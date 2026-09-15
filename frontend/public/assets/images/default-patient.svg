@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="patientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="faceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fbd38d" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="80" cy="80" r="76" fill="#f0fdfa" stroke="#0ea5e9" stroke-width="4"/>
+  <!-- Torso / Medical Shirt -->
+  <path d="M30,146 C32,112 55,102 80,102 C105,102 128,112 130,146 Z" fill="url(#patientGrad)" />
+  <!-- Shirt collar -->
+  <polygon points="80,118 68,102 92,102" fill="#ffffff" opacity="0.9" />
+  <!-- Neck -->
+  <rect x="72" y="86" width="16" height="20" rx="4" fill="#fed7aa" />
+  <!-- Head -->
+  <ellipse cx="80" cy="62" rx="26" ry="30" fill="url(#faceGrad)" />
+  <!-- Hair -->
+  <path d="M54,58 C54,34 66,24 80,24 C94,24 106,34 106,58 C102,46 95,40 80,40 C65,40 58,46 54,58 Z" fill="#334155" />
+  <!-- Heart health badge on chest -->
+  <circle cx="108" cy="126" r="10" fill="#ef4444" />
+  <path d="M104,126 C104,123.5 106,122 108,124 C110,122 112,123.5 112,126 C112,128 108,131 108,131 C108,131 104,128 104,126 Z" fill="#ffffff" />
+</svg>

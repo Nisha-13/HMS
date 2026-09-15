@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+
+backend/.env
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+docker-compose.override.yml
