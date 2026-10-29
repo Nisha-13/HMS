@@ -19,12 +19,12 @@
       "destination": "backend/public/index.php"
     },
     {
-      "source": "/assets/(.*)",
-      "destination": "frontend/dist/assets/$1"
+      "source": "/run-migrations",
+      "destination": "backend/public/index.php"
     },
     {
       "source": "/(.*)",
-      "destination": "frontend/dist/index.html"
+      "destination": "frontend/$1"
     }
   ]
 }
