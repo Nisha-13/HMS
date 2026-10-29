@@ -132,3 +132,24 @@ Route::prefix('v1')->group(function () {
         Route::delete('/admin/events/{id}', [AdminController::class, 'deleteEvent']);
     });
 });
+
+/*
+|--------------------------------------------------------------------------
+| Temporary Deployment Database Trigger Route
+|--------------------------------------------------------------------------
+*/
+Route::get('/run-migrations', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Mubarak ho! Database Migrated and Seeded Successfully.'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
