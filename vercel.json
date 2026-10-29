@@ -1,28 +1,27 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/public/index.php",
-      "use": "vercel-php@0.7.2"
+  "$schema": "https://vercel.sh",
+  "services": {
+    "backend": {
+      "root": "backend",
+      "runtime": "container"
     },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/api/v1/(.*)",
-      "dest": "backend/public/index.php"
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "backend"
+      }
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "frontend/dist/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
     }
   ]
 }
