@@ -3,7 +3,7 @@
   "services": {
     "backend": {
       "root": "backend",
-      "runtime": "container"
+      "framework": "laravel"
     },
     "frontend": {
       "root": "frontend",
