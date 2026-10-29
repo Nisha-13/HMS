@@ -3,7 +3,7 @@
   "services": {
     "backend": {
       "root": "backend",
-      "framework": "laravel"
+      "builder": "@vercel/php"
     },
     "frontend": {
       "root": "frontend",
