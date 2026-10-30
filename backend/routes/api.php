@@ -11,11 +11,6 @@ use App\Http\Controllers\Api\WardBedController;
 use App\Http\Controllers\Api\BillingController;
 use App\Http\Controllers\Api\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-*/
 Route::prefix('v1')->group(function () {
     // API V1 Status & Discovery
     Route::get('/', function () {
@@ -81,11 +76,6 @@ Route::prefix('v1')->group(function () {
     // Public / Guest Appointment Booking
     Route::post('/appointments/book', [AppointmentController::class, 'store']);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Protected Routes (Sanctum)
-    |--------------------------------------------------------------------------
-    */
     Route::middleware('auth:sanctum')->group(function () {
         // User Profile & Avatar & Logout
         Route::get('/auth/me', [AuthController::class, 'profile']);
@@ -135,21 +125,28 @@ Route::prefix('v1')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Temporary Deployment Database Trigger Route
+| Dynamic Forced Cloud Migration & Cache Clear Trigger Route
 |--------------------------------------------------------------------------
 */
 Route::get('/run-migrations', function () {
     try {
+        // Clear cached static settings entirely
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        
+        // Force database structural matching
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
         \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        
         return response()->json([
             'success' => true,
-            'message' => 'Mubarak ho! Database Migrated and Seeded Successfully.'
+            'message' => 'Mubarak ho! All caches cleared and database seeded successfully.'
         ]);
     } catch (\Exception $e) {
         return response()->json([
             'success' => false,
-            'error' => $e->getMessage()
+            'error_message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
         ], 500);
     }
 });
