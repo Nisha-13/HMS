@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "backend/public/index.php",
-      "use": "vercel-php"
+      "use": "vercel-php@0.6.0",
+      "config": {
+        "phpVersion": "8.2"
+      }
     },
     {
       "src": "frontend/package.json",
